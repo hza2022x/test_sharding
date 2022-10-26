@@ -1,0 +1,82 @@
+schemaName: test_four
+
+dataSources:
+  ds_0:
+    url: jdbc:mysql://127.0.0.1:13306/test_four_0?serverTimezone=UTC&useSSL=false
+    username: root
+    password: root
+    connectionTimeoutMilliseconds: 30000
+    idleTimeoutMilliseconds: 60000
+    maxLifetimeMilliseconds: 1800000
+    maxPoolSize: 50
+    minPoolSize: 1
+  ds_1:
+    url: jdbc:mysql://127.0.0.1:13306/test_four_1?serverTimezone=UTC&useSSL=false
+    username: root
+    password: root
+    connectionTimeoutMilliseconds: 30000
+    idleTimeoutMilliseconds: 60000
+    maxLifetimeMilliseconds: 1800000
+    maxPoolSize: 50
+    minPoolSize: 1
+
+  ds_2:
+    url: jdbc:mysql://127.0.0.1:23306/test_four_2?serverTimezone=UTC&useSSL=false
+    username: root
+    password: root
+    connectionTimeoutMilliseconds: 30000
+    idleTimeoutMilliseconds: 60000
+    maxLifetimeMilliseconds: 1800000
+    maxPoolSize: 50
+    minPoolSize: 1
+  ds_3:
+    url: jdbc:mysql://127.0.0.1:23306/test_four_3?serverTimezone=UTC&useSSL=false
+    username: root
+    password: root
+    connectionTimeoutMilliseconds: 30000
+    idleTimeoutMilliseconds: 60000
+    maxLifetimeMilliseconds: 1800000
+    maxPoolSize: 50
+    minPoolSize: 1
+
+rules:
+- !SHARDING
+  tables:
+    test:
+      actualDataNodes: ds_${0..3}.test_${0..3}
+      tableStrategy:
+        standard:
+          shardingColumn: id
+          shardingAlgorithmName: t_order_inline
+      keyGenerateStrategy:
+        column: order_id
+        keyGeneratorName: snowflake
+    t_order_item:
+      actualDataNodes: ds_${0..1}.t_order_item_${0..1}
+      tableStrategy:
+        standard:
+          shardingColumn: order_id
+          shardingAlgorithmName: t_order_item_inline
+      keyGenerateStrategy:
+        column: order_item_id
+        keyGeneratorName: snowflake
+  bindingTables:
+    - t_order,t_order_item
+  defaultDatabaseStrategy:
+    standard:
+      shardingColumn: user_id
+      shardingAlgorithmName: database_inline
+  defaultTableStrategy:
+    none:
+
+  shardingAlgorithms:
+    database_inline:
+      type: INLINE
+      props:
+        algorithm-expression: ds_${id % 4}
+    test_inline:
+      type: INLINE
+      props:
+        algorithm-expression: test_${id % 4}
+
+

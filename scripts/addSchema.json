@@ -1,5 +1,5 @@
-addschema {"schemaName":"test_four_ins0","username":"root","password":"guanghua","masters":[{"ip":"127.0.0.1","port":13306,"status":"START"},{"ip":"127.0.0.1","port":13307,"status":"START","primary":true}],"slaves":[{"ip":"127.0.0.1","port":13308,"status":"START"}],"auths":{"test":{"password":"123456","schemas":["bi","proxytest"],"privilege":1}}}
+addschema {"schemaName":"test_four_foshan_0","username":"test","password":"123456","masters":[{"ip":"127.0.0.1","port":13306,"status":"START"},{"ip":"127.0.0.1","port":13307,"status":"START","primary":true}],"slaves":[{"ip":"127.0.0.1","port":13308,"status":"START"}],"auths":{"test":{"password":"123456","schemas":["test_four_foshan_0","test_four"],"privilege":1}}}
 
-addschema {"schemaName":"test_four_ins1","username":"root","password":"guanghua","masters":[{"ip":"127.0.0.1","port":23306,"status":"START"},{"ip":"127.0.0.1","port":23307,"status":"START","primary":true}],"slaves":[{"ip":"127.0.0.1","port":23308,"status":"START"}],"auths":{"test":{"password":"123456","schemas":["bi","proxytest"],"privilege":1}}}
+addschema {"schemaName":"test_four_foshan_1","username":"test","password":"123456","masters":[{"ip":"127.0.0.1","port":23306,"status":"START"},{"ip":"127.0.0.1","port":23307,"status":"START","primary":true}],"slaves":[{"ip":"127.0.0.1","port":23308,"status":"START"}],"auths":{"test":{"password":"123456","schemas":["test_four_foshan_1","test_four"],"privilege":1}}}
 
 

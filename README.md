@@ -1,1 +1,2 @@
-# test_sharding
+# sharding-demo-java
+sharding java demo
